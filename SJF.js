@@ -18,10 +18,10 @@ let output = []
 input.sort((p1, p2) => p1["Arrival"] - p2["Arrival"]);
 output.push(input[0]);                                  // store it 
 // remove it from old array to avoid mis-sorting 
-input.splice(0, 1); 
+input.splice(0, 1);
 
 // temp array to store recently arrived processes
-let nextArri = []; 
+let nextArri = [];
 for (let i = 0; i < input.length; i++) {                // to check again for new recent one
     for (let i = 0; i < input.length; i++) {            // to check inputs
         // checking out which one arrived recently
@@ -52,12 +52,16 @@ console.log("");                                            // new line
 // calculation
 console.log("Output after Calculation:");
 
-let completion = output[0]["Arrival"]                       // first process arrival
+let completion = output[0]["Arrival"];                       // first process arrival
+let totalWaiting = 0, totalTA = 0
 for (let i = 0; i < output.length; i++) {
 
-    completion += output[i]["Burst"]
-    let turnAround = completion - output[i]["Arrival"]
-    let waiting = turnAround - output[i]["Burst"]
+    completion += output[i]["Burst"];
+    let turnAround = completion - output[i]["Arrival"];
+    totalTA += turnAround;
+    let waiting = turnAround - output[i]["Burst"];
+    totalWaiting += waiting;
 
     console.log(`Process: ${output[i]["Process"]}, Completion: ${completion}, Turn Around: ${turnAround}, Waiting:${waiting}`);
 }
+console.log("\nAverage TurnAround Time: ", totalTA / output.length, "\nAverage Waiting Time: ", totalWaiting / output.length);
