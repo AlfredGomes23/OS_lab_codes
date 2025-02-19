@@ -7,46 +7,52 @@ let input = [
     { "Process": 4, "Arrival": 0, "Burst": 3 },
     { "Process": 5, "Arrival": 4, "Burst": 4 }
 ]
-for (let i = 0; i < input.length; i++) {
+for (let i = 0; i < input.length; i++) {                //printing inputs
     console.log(`Process: ${input[i]["Process"]}, Arrival: ${input[i]["Arrival"]}, Burst: ${input[i]["Burst"]}`);
 }
-console.log("");   // new line
+console.log("");                                        // new line
 
 let output = []
 
-// first process will be
+// sorting-out the first/initial process
 input.sort((p1, p2) => p1["Arrival"] - p2["Arrival"]);
-output.push(input[0]); //sorting first one
-input.splice(0, 1);
+output.push(input[0]);                                  // store it 
+// remove it from old array to avoid mis-sorting 
+input.splice(0, 1); 
 
-let nextArri = [];
-for (let i = 0; i < input.length; i++) {
-    for (let i = 0; i < input.length; i++) {
+// temp array to store recently arrived processes
+let nextArri = []; 
+for (let i = 0; i < input.length; i++) {                // to check again for new recent one
+    for (let i = 0; i < input.length; i++) {            // to check inputs
+        // checking out which one arrived recently
         if (input[i]["Arrival"] <= output.at(-1)["Burst"]) {
-            nextArri.push(input[i]);
-            input.splice(i, 1);
-            i--;
+            nextArri.push(input[i]);                    // store recent one into temp array
+            input.splice(i, 1);                          //remove it from original one
+            i--;                                        //adjust loop index as removed one element
         }
     }
-    nextArri.sort((p1, p2) => p1["Burst"] - p2["Burst"]);
-    output.push(nextArri[0]);
-    nextArri.splice(0, 1);
+    // implemnt SortestJobFisrt logic
+    nextArri.sort((p1, p2) => p1["Burst"] - p2["Burst"]);   //sort by busrt time
+    output.push(nextArri[0]);                               //store it
+    nextArri.splice(0, 1);                                  //remove to avoid mis-sorting
+    //  check for last one in temp and add it to output
     if (input.length <= 1) {
         output.push(...nextArri)
     }
 }
+//  check for last one in input/original and add it to output
 output.push(...input)
 
 console.log("After sorting:");
 for (let i = 0; i < output.length; i++) {
     console.log(`Process: ${output[i]["Process"]}, Arrival: ${output[i]["Arrival"]}, Burst: ${output[i]["Burst"]}`);
 }
-console.log("");   // new line
+console.log("");                                            // new line
 
 // calculation
 console.log("Output after Calculation:");
 
-let completion = output[0]["Arrival"] // first process arrival
+let completion = output[0]["Arrival"]                       // first process arrival
 for (let i = 0; i < output.length; i++) {
 
     completion += output[i]["Burst"]
