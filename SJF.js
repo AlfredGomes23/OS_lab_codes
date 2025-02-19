@@ -18,7 +18,6 @@ let output = []
 input.sort((p1, p2) => p1["Arrival"] - p2["Arrival"]);
 output.push(input[0]); //sorting first one
 input.splice(0, 1);
-console.log(`\nFirst One will be:\nProcess: ${output[0]["Process"]}, Arrival: ${output[0]["Arrival"]}, Burst: ${output[0]["Burst"]}\n`);
 
 let nextArri = [];
 for (let i = 0; i < input.length; i++) {
@@ -30,22 +29,19 @@ for (let i = 0; i < input.length; i++) {
         }
     }
     nextArri.sort((p1, p2) => p1["Burst"] - p2["Burst"]);
-    console.log("next", nextArri);
     output.push(nextArri[0]);
     nextArri.splice(0, 1);
-    console.log('IN', input);
     if (input.length <= 1) {
         output.push(...nextArri)
     }
 }
 output.push(...input)
-console.log(output);
 
-// console.log("After sorting:");
-// for (let i = 0; i < input.length; i++) {
-//     console.log(`Process: ${input[i]["Process"]}, Arrival: ${input[i]["Arrival"]}, Burst: ${input[i]["Burst"]}`);
-// }
-// console.log("");   // new line
+console.log("After sorting:");
+for (let i = 0; i < output.length; i++) {
+    console.log(`Process: ${output[i]["Process"]}, Arrival: ${output[i]["Arrival"]}, Burst: ${output[i]["Burst"]}`);
+}
+console.log("");   // new line
 
 // calculation
 console.log("Output after Calculation:");
