@@ -7,12 +7,13 @@ let input = [
     { "Process": 4, "Arrival": 4, "Burst": 1 , "Priority": 40}
 ];
 console.log("Inputs:");                                     //printing inputs 
+const timeQuantum = 1;                                 // time quantum for RR algorithm
+console.log("Time quantum: ", timeQuantum, "and Higher Priority.");
 input.forEach(process => {
     console.log(`Process: ${process.Process}, Arrival: ${process.Arrival}, Burst: ${process.Burst}, Priority: ${process.Priority}`);
     process.Remaining = process.Burst;                  // add remain time in each process
 }); console.log("");
 
-const timeQuantum = 1;                                 // time quantum for RR algorithm
 let processes = [...input], output = [];                    //copy of input array
 processes.sort((p1, p2) => p1.Arrival - p2.Arrival);        // Sort by Arrival Time
 let queue = [], ganttChart = [], currentTime = 0;    // Initialize Variables
