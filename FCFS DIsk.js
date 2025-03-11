@@ -1,6 +1,5 @@
 reqSeq = [176, 79, 34, 60, 92, 11, 41, 114];
 head = 50; //printing inputs
-process.stdout.write("FCFS Disk Scheduling Algorithm:\nInputs:\nRequest Sequence:  ");
 reqSeq.forEach(n => process.stdout.write(n + " "));
 console.log("    and the Head: ", head, "\n");
 
