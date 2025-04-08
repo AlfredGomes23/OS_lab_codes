@@ -6,25 +6,19 @@ console.log("    and the Head is ", head, "\n");
 reqSeq.sort((seq1, seq2) => seq1 - seq2);
 //find the head index
 let headIndex = reqSeq.indexOf(head);
-
 //head to cylinder
 output = reqSeq.filter( seq => (seq >= head));
-//update seekSeq
+//update seekOp
 seekOp+=(output[output.length - 1]-head);
-
-//no sequence scan as it's c-scan
-//update seekSeq for right to left travel
+//cylinder to starting point travel with no sequence scan as it's c-scan
+//update seekOp
 seekOp+=(reqSeq[reqSeq.length - 1]-reqSeq[0]);
-
-//re-order the sequence
-reqSeq.sort((seq1, seq2) => seq2 - seq1);
 //starting to head
 let leftSided = reqSeq.filter( seq => (seq < head))
 output.push(...leftSided);
-//update seekSeq
+//update seekOp
 seekOp+=(leftSided[0] -leftSided[leftSided.length - 1]);
-
 console.log("Output:");
-console.log("Total Seek Operations: ", seekOp);
+console.log("Total Seek Operations for Scan Disk Schedule: ", seekOp);
 process.stdout.write("Sequence Order:  ");
 output.forEach(n => process.stdout.write(n + " "));
