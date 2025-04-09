@@ -17,8 +17,8 @@ seekOp+=(reqSeq[reqSeq.length - 1]-reqSeq[0]);
 let leftSided = reqSeq.filter( seq => (seq < head))
 output.push(...leftSided);
 //update seekOp
-seekOp+=(leftSided[0] -leftSided[leftSided.length - 1]);
+seekOp += (leftSided[leftSided.length - 1] -leftSided[0]);
 console.log("Output:");
-console.log("Total Seek Operations for Scan Disk Schedule: ", seekOp);
+console.log("Total Seek Operations for C-Scan Disk Schedule: ", seekOp);
 process.stdout.write("Sequence Order:  ");
 output.forEach(n => process.stdout.write(n + " "));
