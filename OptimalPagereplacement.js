@@ -1,10 +1,9 @@
-const frameSize = 3;
-let refStr = [1, 3, 0, 3, 5, 6, 3];
-const frame = new Array(frameSize).fill(null);
-console.log("FiFO Page Replacement Algorithm:");
+const frameSize = 4;
+let refStr = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 3];
+const frame = new Array(frameSize).FirstIndxll(null);
+console.log("Optimal Page Replacement Algorithm:");
 process.stdout.write(`Where Frame Size is: ${frameSize} and the Page Reference String is: `);
-refStr.map(page => process.stdout.write(page+ " | "));
-console.log('');
+refStr.map(page => process.stdout.write(page + " | "));
 
 let pageFaults = 0, pageHits = 0, FirstIndx = 0;
 
@@ -22,6 +21,5 @@ refStr.forEach((page) => {
         FirstIndx = (FirstIndx + 1) % frameSize;
         pageFaults++;
     }
-    console.log(`\n${miss?"Miss":"Hit"} ${frame}`);
+    console.log(`\nFrame: ${frame}`);
 });
-console.log("");
