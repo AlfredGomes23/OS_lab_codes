@@ -1,27 +1,27 @@
 const frameSize = 3;
 let refStr = [1, 3, 0, 3, 5, 6, 3];
 const frame = new Array(frameSize).fill(null);
-console.log("FiFO Page Replacement Algorithm:");
-process.stdout.write(`Where Frame Size is: ${frameSize} and the Page Reference String is: `);
-refStr.map(page => process.stdout.write(page+ " | "));
+console.log("\nFiFO Page Replacement Algorithm:");
+console.log(`Where Frame Size is: ${frameSize}
+And the Page Reference String is: `);
+refStr.map(page => process.stdout.write(page + " | "));
 console.log('');
 
-let pageFaults = 0, pageHits = 0, FirstIndx = 0;
-
+let pageMiss = 0, pageHit = 0, FirstIndx = 0;
 refStr.forEach((page) => {
     let miss = true;
     for (let i = 0; i < frameSize; i++) {
         if (frame[i] === page) {
             miss = false;
-            pageHits++;
+            pageHit++;
             break;
         }
     }
     if (miss) {
         frame[FirstIndx] = page;
         FirstIndx = (FirstIndx + 1) % frameSize;
-        pageFaults++;
+        pageMiss++;
     }
     console.log(`\n${miss?"Miss":"Hit"} ${frame}`);
 });
-console.log("");
+console.log("\nTotal Page Hits: " + pageHit + "\nTotal Page Faults: " + pageMiss);
