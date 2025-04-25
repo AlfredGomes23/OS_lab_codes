@@ -1,12 +1,10 @@
-const frameSize = 4;
-let refStr = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 3];
-const frame = new Array(frameSize).fill(null);
-console.log("Optimal Page Replacement Algorithm:");
-console.log(`Where Frame Size is: ${frameSize} \nAnd the Page Reference String is: `);
+const frameSize = 4, frame = new Array(frameSize).fill(null);
+let refStr = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 3], pageMiss = 0, pageHit = 0;
+console.log(`Optimal Page Replacement Algorithm:
+Where Frame Size is: ${frameSize}
+And the Page Reference String is: `);
 refStr.map(page => process.stdout.write(page + " | "));
-console.log('\n');
-
-let pageMiss = 0, pageHit = 0, optimalIndx = -1, firstHit = false;
+console.log('');
 
 refStr.forEach((page, i) => {
     let status = null;
@@ -28,11 +26,6 @@ refStr.forEach((page, i) => {
                 }
             });
             frame[replaceIndex] = page;
-        }
-        status = "MISS";
-    }
-    console.log(`${status}: [${frame.map(f => (f === null ? '-' : f)).join(', ')}]`);
-    console.log("");
-});
-console.log("Total Page Hits: " + pageHit);
-console.log("Total Page Misses: " + pageMiss);
+        }   status = "MISS";
+    }   console.log(`${status}: [${frame.map(f => (f === null ? '-' : f)).join(', ')}]\n`);
+}); console.log("Total Page Hits: " + pageHit + "\nTotal Page Misses: " + pageMiss);
