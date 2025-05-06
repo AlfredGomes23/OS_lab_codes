@@ -31,7 +31,7 @@ for (let i = 0; i < input.length; i++) {                // to check again for ne
             i--;                                        //adjust loop index as removed one element
         }
     }
-    // implemnt SortestJobFisrt logic
+    // implement ShortestJobFirst logic
     nextArri.sort((p1, p2) => p1["Burst"] - p2["Burst"]);   //sort by busrt time
     output.push(nextArri[0]);                               //store it
     nextArri.splice(0, 1);                                  //remove to avoid mis-sorting
