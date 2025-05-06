@@ -45,7 +45,6 @@ for (let i = 0; i < output.length; i++) {
 console.log("Output after Calculation:");
 
 let completion = output[0]["Arrival"];
-output.sort((p1, p2) => p1["Process"] - p2["Process"]);
 for (let i = 0; i < output.length; i++) {
 
     completion += output[i]["Burst"];
@@ -54,5 +53,3 @@ for (let i = 0; i < output.length; i++) {
 
     console.log(`Process: ${output[i]["Process"]}, Arrival: ${output[i]["Arrival"]}, Burst: ${output[i]["Burst"]} Completion: ${completion}, Turn Around: ${turnAround}, Waiting:${waiting}`);
 }
-
-console.log(output);
